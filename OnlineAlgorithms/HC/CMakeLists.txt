@@ -20,7 +20,7 @@ set(HC_SOURCE_FILES
         Shared/MigrationPlan.hpp
         )
 
-include_directories(hc Calculator/ Shared/)
+include_directories(hc Calculator Shared)
 
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g")
