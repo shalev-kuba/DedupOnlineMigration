@@ -16,6 +16,7 @@ Original implementation on GitHub:
 
 ## Prerequisites
 - Linux machine (tested on Ubuntu 22.04)
+- Python 3.6+
 - CMake ≥ 3.10
 - GCC ≥ 5 (for C++14)
 - libboost
