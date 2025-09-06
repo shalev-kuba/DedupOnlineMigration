@@ -37,7 +37,7 @@ static void setUpAndValidateParser(CommandLineParser& parser){
                          "seeds for the algorithm, list of int");
 
     parser.addConstraint("-gap", CommandLineParser::ArgumentType::DOUBLE, CommandLineParser::VARIABLE_NUM_OF_OCCURRENCES, false,
-                         "pick random value from values in this gap - list of double");
+                         "pick random results value from result values in this gap - list of double");
 
     parser.addConstraint("-lb_sizes", CommandLineParser::ArgumentType::DOUBLE, CommandLineParser::VARIABLE_NUM_OF_OCCURRENCES, true,
                          "a list of clusters' requested sizes - list of int, must sum to 100 (optional, default is even distribution)");
@@ -46,10 +46,10 @@ static void setUpAndValidateParser(CommandLineParser& parser){
                          "% to add to system's initial size at every iteration - int (mandatory if -lb is used, default is 5)");
 
     parser.addConstraint("-output_path_prefix", CommandLineParser::ArgumentType::STRING, CommandLineParser::VARIABLE_NUM_OF_OCCURRENCES, true,
-                         "output path prefix (optional, default is results/result in the working directory)");
+                         "prefix of output path (optional, default is results/result in the working directory)");
 
     parser.addConstraint("-result_sort_order", CommandLineParser::ArgumentType::STRING,  CommandLineParser::VARIABLE_NUM_OF_OCCURRENCES, true,
-                         "sort order for the best result. use the following literals: "
+                         "sort order for the best result selection. use the following literals: "
                          "(traffic_valid, lb_valid, deletion, lb_score, traffic). The default sort order is "
                          "'traffic_valid lb_valid deletion lb_score traffic'");
 
@@ -60,17 +60,18 @@ static void setUpAndValidateParser(CommandLineParser& parser){
                          "path to cost's cache (default is cache.db)");
 
     parser.addConstraint("-num_iterations", CommandLineParser::ArgumentType::INT, 1, true,
-                         "num of incremental clustering iterations (default=1 iteration)");
+                         "num of epochs in a migration window (default=1 epoch)");
 
     parser.addConstraint("-num_changes_iterations", CommandLineParser::ArgumentType::INT, 1, true,
-                         "num of changes iterations, default is 0");
+                         "num of epochs with system changes in a migration window, default is 0");
 
     parser.addConstraint("-changes_input_file", CommandLineParser::ArgumentType::STRING, 1, true,
                          "changes input file, default is \"\"");
 
     parser.addConstraint("-change_pos", CommandLineParser::ArgumentType::STRING, 1, false,
-                         "Change pos. that should be one of: migration_after_changes,"
-                         "migration_before_changes, migration_with_continuous_changes or only_changes");
+                         "Online algorithm to simulate. (previously called Change pos). that should be one of: migration_after_changes (post),"
+                         "migration_before_changes (pre), migration_with_continuous_changes (multiple), "
+                         "naive_split (space-split), lb_split (balance-split), smart_split (slide), or only_changes");
 
     parser.addConstraint("-changes_seed", CommandLineParser::ArgumentType::INT, 1, true,
                          "changes seed, default is 22");
@@ -82,13 +83,14 @@ static void setUpAndValidateParser(CommandLineParser& parser){
                          "num of running the experiment one after another");
 
     parser.addConstraint("-files_index_path", CommandLineParser::ArgumentType::STRING, 1, true,
-                         "path to files index");
+                         "path to files index (output file of volumes_split_creator.py with the flag of --output_filter_snaps_path)");
 
     parser.addConstraint("-changes_insert_type", CommandLineParser::ArgumentType::STRING, 1, true,
                          "changes insert type, default is random. options are random/backup");
 
     parser.addConstraint("-split_sort_order", CommandLineParser::ArgumentType::STRING, 1, true,
-                         "split transfer sort order, default is hard_deletion. options are hard_deletion, soft_deletion and soft_lb");
+                         "split transfer sort order, default is hard_deletion. options are hard_deletion, soft_deletion,"
+                         " hard_lb and soft_lb. hard_lb is the option used for Slide and Balance split");
 
     try {
         parser.validateConstraintsHold();

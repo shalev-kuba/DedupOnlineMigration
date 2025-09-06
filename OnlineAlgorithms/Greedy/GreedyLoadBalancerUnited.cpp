@@ -1658,7 +1658,7 @@ int main(int argc, char *argv[]) {
     if (argc != 16) {
         std::cout
                 << "arguments format is: {volumelist} {output} {conclusionFile} {timelimit} {Traffic} {margin} "
-                   "{num_migration_iters} {num_changes_iters} {seed} {changes_file} {file_index} {change_pos}[start/end/middle] {total_perc_changes} "
+                   "{num_migration_iters} {num_changes_iters} {seed} {changes_file} {file_index} {change_pos} {total_perc_changes} "
                    "{change_insert_type} {num_runs}"
                 << std::endl;
         return 0;
