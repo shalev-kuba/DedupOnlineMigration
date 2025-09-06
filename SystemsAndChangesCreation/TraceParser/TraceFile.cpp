@@ -35,7 +35,8 @@ FSMetaData TraceFile::consume_headers(std::ifstream& input_stream, const std::st
     static constexpr uint64_t INITIAL_NUM_LOGICAL_FILES = 0;
     static constexpr uint64_t HEX_BASE = 16;
 
-    return {Utility::get_file_name(file_path),
+    return {{},
+            Utility::get_file_name(file_path),
             static_cast<uint64_t>(std::stoull(headers_lines[Config::TRACE_HEADER::USERNAME_INDEX], nullptr,HEX_BASE)),
             static_cast<uint64_t>(std::stoull(headers_lines[Config::TRACE_HEADER::HOSTNAME_INDEX], nullptr, HEX_BASE)),
             Utility::get_date(static_cast<uint64_t>(std::stoull(headers_lines[Config::TRACE_HEADER::TIMESTAMP_INDEX]))),
@@ -44,7 +45,8 @@ FSMetaData TraceFile::consume_headers(std::ifstream& input_stream, const std::st
             INITIAL_NUM_LOGICAL_BLOCKS,
             INITIAL_NUM_PHYSICAL_BLOCKS,
             INITIAL_NUM_LOGICAL_FILES,
-            INITIAL_NUM_FILES};
+            INITIAL_NUM_FILES,
+            0};
 }
 
 bool TraceFile::consume_file()
