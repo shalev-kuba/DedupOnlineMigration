@@ -89,8 +89,8 @@ static void setUpAndValidateParser(CommandLineParser& parser){
                          "changes insert type, default is random. options are random/backup");
 
     parser.addConstraint("-split_sort_order", CommandLineParser::ArgumentType::STRING, 1, true,
-                         "split transfer sort order, default is hard_deletion. options are hard_deletion, soft_deletion and soft_lb. "
-                         "soft_lb is the option used for Slide and Balance split");
+                         "split transfer sort order, default is hard_deletion. options are hard_deletion, soft_deletion,"
+                         " hard_lb and soft_lb. hard_lb is the option used for Slide and Balance split");
 
     try {
         parser.validateConstraintsHold();
