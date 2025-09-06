@@ -29,6 +29,7 @@ $ cmake .. && make
 ```
 
 After the make command ends, `hc` binary should appear in your Build directory (DedupOnlineMigration/OnlineAlgorithms/HC/Build/hc).
+
 ----
 
 ## Running HC-based online migration algorithms
