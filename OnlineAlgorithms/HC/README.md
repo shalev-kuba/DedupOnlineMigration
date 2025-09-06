@@ -216,7 +216,7 @@ Got exception: ERROR: The param -workloads is missing
    - `80.00` → allocated traffic as a percentage of the initial system size
    - `I8_m8_c8` → epoch number 8, with 8 epochs containing migrations (`m8`) and 8 epochs containing changes (`c8`)
    - `WT60.00_S58.00_G3.00_E30.00_M5.00` → clustering parameters for this run
-   - `wc` → results measured after changes occur
+   - `wc` → results measured after changes occur, without is results as calculated before changes occur
    - `lb_V` → load balancing constraint enabled, with `V` indicating a valid result (`NV` means not valid)
 
 2. **Best iteration results.**  
