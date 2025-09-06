@@ -112,8 +112,11 @@ options:
 
 For generating files to all users, an index of files is first necessary. We'll later see how to generate it.
 
----
+### Filter synthetic files
+After creation of those synthetic files, it's recommended to pre-filtered these files, and give the filtered version to 
+the system creation script as will be discussed later. To filter those files, just use the script `SystemsAndChangesCreation/TraceParser/scripts/filter_all_generated_files.py`
 
+---
 
 ## Generate system volumes specification
 To generate different system specifications. we use the `volumes_split_creator.py` script (located under TraceParser/scripts).

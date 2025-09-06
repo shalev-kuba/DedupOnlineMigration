@@ -2,8 +2,37 @@
 
 ## Experiment parameters
 
+### System creation
+We created a systems with the following configurations (All experiments ran over filtered systems):
+- **Users-750** 
+  - divide_method = **by_user** 
+  - 150 files per volume
+  - 5 volumes
+  - Don't balance system
+  - 0% noise percentages
+
+- **Users-750-10vols**
+    - divide_method = **by_user**
+    - 75 files per volume
+    - 10 volumes
+    - Don't balance system
+    - 0% noise percentages
+
+- **Random**
+    - divide_method = **by_user**
+    - 150 files per volume
+    - 5 volumes
+    - Don't balance system
+    - 100% noise percentages
+
+
 ### Change list seed
 We used the following change list seeds in our experiment: `1010, 7192, 999, 123, 0, 2222`
+
+- In Backup (within the `volumes_split_creator.py` script)
+  - `BAK_NUM_HOSTS_PERC` is equal no change rate percentages of that experiment.
+  - `BAK_NUM_CHANGES_ITERS` is equal to number of epochs in a window
+  - `BAK_NUM_RUNS` is equal to number consecutive windows in the experiment
 
 ### Volume insertion seed
 For selecting volume to insert changes to in the random type change stream, we used the following seeds: `22, 80, 443, 8080`
@@ -15,6 +44,7 @@ WT_TRAFFICS = [20, 40, 60, 80, 100]
 GAPS = [0.5, 1.0, 3.0]
 SEEDS = [0, 37, 41, 58, 99, 111, 185, 199, 523, 666]
 ```
+
 ---
 
 ## Graph Generation
