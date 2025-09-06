@@ -63,3 +63,78 @@ We added a `Consts` section to this notebook. In particular, please edit the fol
 * In section 2 (*"2-base, 8 epochs (2 runs, 40%), metrics per epoch"*), we manually added the initial system values so that the per-epoch view starts at epoch 0.
 * Each section begins with constants that can be adjusted to your needs.
 * In our experiments, we created a unified CSV file that contains both `hc` and `greedy` results.  
+
+## Experiments run commands
+Here are the run command to reproduce the first 4 experiments of the paper.
+The rest can be reproduced similarly:
+```shell
+#-------------
+# Base experiment run 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos only_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_after_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_before_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_with_continuous_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos naive_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos smart_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos lb_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+#-------------
+
+#-------------
+# Experiment of different traffic budgets 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos only_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_after_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_before_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_with_continuous_changes --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos naive_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos smart_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 20 60 80 100 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos lb_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+#-------------
+
+#-------------
+# Experiment of different change rates
+
+## 15% change rate
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos only_changes --changes_perc 15 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_after_changes --changes_perc 15 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_before_changes --changes_perc 15 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_with_continuous_changes --changes_perc 15 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos naive_split --changes_perc 15 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos smart_split --changes_perc 15 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos lb_split --changes_perc 15 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+
+## 20% change rate
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos only_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_after_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 1 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_before_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_with_continuous_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos naive_split --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos smart_split --changes_perc 20 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+nohup python3 ./run_exp.py --num_of_runs 2 --workload ubc150_5vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos lb_split --changes_perc 20 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+#-------------
+
+#-------------
+# Different window size experiment
+
+## Basic experiment already covers window of 4 epochs over 2 runs
+ 
+## window of 8 epochs (1 run)
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 1 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos only_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 1 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_after_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 1 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_before_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 8 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_with_continuous_changes --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 8 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos naive_split --changes_perc 20 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 8 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos smart_split --changes_perc 20 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+nohup python3 ./run_exp.py --num_of_runs 1 --workload ubc150_5vols_by_user --load_balance --traffics 80 --mask k13 --num_iterations 8 --num_changes_iterations 8 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos lb_split --changes_perc 20 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+
+
+## window of 2 epochs (4 run)
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 1 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos only_changes --changes_perc 5 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 1 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_after_changes --changes_perc 5 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 1 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_before_changes --changes_perc 5 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 2 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos migration_with_continuous_changes --changes_perc 5 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 2 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos naive_split --changes_perc 5 --change_type filter_backup --changes_insert_type backup 
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 2 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos smart_split --changes_perc 5 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+nohup python3 ./run_exp.py --num_of_runs 4 --workload ubc150_5vols_by_user --load_balance --traffics 20 --mask k13 --num_iterations 2 --num_changes_iterations 2 --changes_seeds 8080 --changes_list_seed 0 123 2222 7192 1010 999 --change_pos lb_split --changes_perc 5 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb 
+#-------------
+
+```
