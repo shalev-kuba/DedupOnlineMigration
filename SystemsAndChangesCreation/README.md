@@ -40,7 +40,7 @@ All the binaries of subproject targets described above should now be available u
 ---
 
 
-## Translate UBC-dedup files to out format
+## Translate UBC-dedup files to TraceFile format
 First, we want UBC-dedup files to be translated to our file formats.
 To do so, we will use the `run_trace_parser.py` script (located under TraceParser/scripts):
 ```shell
