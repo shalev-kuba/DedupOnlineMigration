@@ -28,6 +28,7 @@ $ cmake .. && make
 ```
 
 After the make command ends, `hc` binary should appear in your Build directory (DedupOnlineMigration/OnlineAlgorithms/HC/Build/hc).
+----
 
 ## Running HC-based online migration algorithms
 In this subproject, the presented online migration approaches use different names.
@@ -76,6 +77,7 @@ PARAMS DESCRIPTION:
 
 Got exception: ERROR: The param -workloads is missing
 ```
+----
 
 ### Using helper script
 1. Set config to system. For example, such file should be in the following format:
@@ -205,20 +207,35 @@ Got exception: ERROR: The param -workloads is missing
     ```shell
     python3 ./run_exp.py --num_of_runs 2 --workload ubc75_10vols_by_user --load_balance --traffics 40 --mask k13 --num_iterations 4 --num_changes_iterations 4 --changes_seeds 8080 --changes_list_seed 0 123 7979 2222 7192 1010 999 --change_pos lb_split --changes_perc 10 --change_type filter_backup --changes_insert_type backup  --split_sort_order hard_lb
     ```
+----
 
 ## Output
-As hc runs, it outputs the following results in a csv format:
-1. specific result in an epoch. For example: ubc150_5vols_by_user_T80.00_I8_m8_c8_WT60.00_S58.00_G3.00_E30.00_M5.00_wc_lb_V.csv
-   `ubc150_5vols_by_user` is the workload. `80.00` is the allocated traffic as % of initial system size.
-   `I8_m8_c8` means, epoch number 8, with 8 epochs that contain migrations (m8) and 8 epochs that contain changes (c8).
-   `WT60.00_S58.00_G3.00_E30.00_M5.00` is the specific clustering try params. `wc` means it's results after changes occur.
-   `lb_V` means load balancing constraint is enabled and the `V` means the result is valid (`NV` otherwise).
-2. Best iteration results. For example: `ubc150_5vols_by_user_T40.00_best_iter_2_m2_c2.csv`.
-Which is the best result of epoch number 2. 
-3. migration plan results. For example: `ubc150_5vols_by_user_T80.00_migration_plan.csv`
+1. **Per-epoch results.**  
+   Example: `ubc150_5vols_by_user_T80.00_I8_m8_c8_WT60.00_S58.00_G3.00_E30.00_M5.00_wc_lb_V.csv`
+   - `ubc150_5vols_by_user` → workload name
+   - `80.00` → allocated traffic as a percentage of the initial system size
+   - `I8_m8_c8` → epoch number 8, with 8 epochs containing migrations (`m8`) and 8 epochs containing changes (`c8`)
+   - `WT60.00_S58.00_G3.00_E30.00_M5.00` → clustering parameters for this run
+   - `wc` → results measured after changes occur
+   - `lb_V` → load balancing constraint enabled, with `V` indicating a valid result (`NV` means not valid)
 
+2. **Best iteration results.**  
+   Example: `ubc150_5vols_by_user_T40.00_best_iter_2_m2_c2.csv`  
+   This file contains the best result of epoch number 2.
+
+3. **Migration plan results.**  
+   Example: `ubc150_5vols_by_user_T80.00_migration_plan.csv`
+----
 ### Aggregated results
-Results of multiple experiments can be aggregated to one csv using `hc_union_result.py`.
-By editing the constant in the start of `hc_union_result.py` you can decide which results will be calculated.
-Then, by running ```python hc_union_result.py```, an aggregated file `summarized_results_with_iterations.csv` will be outputed.
-That file can be given to `Experiment/Graph-generator/LetItSlide-graph_generator.ipynb` to create graphs like appear in the papers.
+
+Results from multiple experiments can be combined into a single CSV using `hc_union_result.py`.
+
+- By editing the constants at the start of `hc_union_result.py`, you can choose which results to include.
+- Running
+  ```shell
+  python hc_union_result.py
+  ```
+  produces an aggregated file named summarized_results_with_iterations.csv.
+- This aggregated file can then be passed to
+  Experiment/Graph-generator/LetItSlide-graph_generator.ipynb
+  to generate graphs similar to those shown in the papers.
