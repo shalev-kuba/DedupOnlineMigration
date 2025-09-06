@@ -1,5 +1,22 @@
 # Experiments
 
+## Experiment parameters
+
+### Change list seed
+We used the following change list seeds in our experiment: `1010, 7192, 999, 123, 0, 2222`
+
+### Volume insertion seed
+For selecting volume to insert changes to in the random type change stream, we used the following seeds: `22, 80, 443, 8080`
+
+### HC params
+We used the following HC params in our HC-based online deduplicated migration: 
+```shell
+WT_TRAFFICS = [20, 40, 60, 80, 100]
+GAPS = [0.5, 1.0, 3.0]
+SEEDS = [0, 37, 41, 58, 99, 111, 185, 199, 523, 666]
+```
+---
+
 ## Graph Generation
 
 To generate the graphs shown in the paper, we used the Jupyter notebook  
