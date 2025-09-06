@@ -1,6 +1,6 @@
 # Clustering-Based Online Deduplicated Migration
 
-This subproject implements the online deduplicated migration algorithms presented in our paper:  
+This subproject implements the HC-based online deduplicated migration algorithms presented in our paper:  
 *“Let It Slide: Online Deduplicated Data Migration.”* SYSTOR ’25: Proceedings of the 18th ACM International Systems and Storage Conference  
 [https://dl.acm.org/doi/10.1145/3757347.3759144](https://dl.acm.org/doi/10.1145/3757347.3759144)
 
