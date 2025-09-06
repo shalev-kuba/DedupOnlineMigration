@@ -21,5 +21,5 @@ This project implements the online deduplicated migration algorithms presented i
   <https://www.usenix.org/conference/fast22/presentation/kisous>  
   <https://github.com/roei217/DedupMigration/>
 
-- **Experiments**: Contains parameter documentation and scripts for generating the graphs  
+- **Experiments**: Contains parameters documentation and scripts for generating the graphs  
   presented in the paper.  
