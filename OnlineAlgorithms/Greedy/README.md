@@ -20,6 +20,7 @@ Original implementation on GitHub:
 - CMake ≥ 3.10
 - GCC ≥ 5 (for C++14)
 - libboost
+- libboost-dev
 - Workloads and changes list created using the SystemsAndChangesCreation subproject
 ----
 
