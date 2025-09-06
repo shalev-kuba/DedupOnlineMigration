@@ -203,3 +203,7 @@ Each of those files is a line separated of TraceFiles in that volumes.
 - Outputted system volumes will be in the same `INPUT_DIR` with `.system` suffix (under `filtered/` folder if `IS_FILTER_OF` is set)
 - `system_config` file is generated to log the system configurations
 - These are the system volumes you can give as an input to HC-based and Greedy-based online migration algorithms later on
+
+## Files format
+The format of all of TraceFile, VolumeFile (including system volume) are similar to the format used in Kisous et.al paper.
+Format details for example can bee seen here: https://github.com/roei217/DedupMigration/blob/master/Greedy/Greedy.pdf
